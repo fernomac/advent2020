@@ -16,6 +16,16 @@ func ReadInts(file string) *IntReader {
 	return &IntReader{ReadLines(file)}
 }
 
+// LoadInts loads all of the ints from a file into memory at once.
+func LoadInts(file string) []int {
+	ret := []int{}
+	r := ReadInts(file)
+	for r.Next() {
+		ret = append(ret, r.Value())
+	}
+	return ret
+}
+
 // Next moves to the next int
 func (r *IntReader) Next() bool {
 	return r.r.Next()
